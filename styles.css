@@ -1,0 +1,23 @@
+.board{
+    height: 550px;
+    width: 700px;
+    border: 5px solid black;
+    display: inline-block;
+}
+
+.standardRows{
+    height: 57px;
+    border-bottom: 5px solid black;
+}
+
+.RowOne{
+    display: inline-block;
+}
+.RowNINE{
+    height: 55px;
+}
+
+#solveButton{
+    margin-top: 20px;
+    margin-left: 300px;
+}
