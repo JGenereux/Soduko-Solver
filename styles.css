@@ -1,12 +1,13 @@
 .board{
-    height: 550px;
-    width: 700px;
+    margin-left: 200px;
+    height: 398px;
+    width: 360px;
     border: 5px solid black;
     display: inline-block;
 }
 
 .standardRows{
-    height: 57px;
+    height: 40px;
     border-bottom: 5px solid black;
 }
 
@@ -17,7 +18,23 @@
     height: 55px;
 }
 
+.sudoku-cell{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 30px;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+    box-sizing: border-box;
+}
+
+.sudoku-cell:hover{
+    background-color: rgba(255, 0, 0, 0.25);
+}
 #solveButton{
     margin-top: 20px;
-    margin-left: 300px;
+    margin-left: 335px;
 }

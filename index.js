@@ -1,3 +1,4 @@
+
 let board = [
     [5,2,0,0,6,9,0,0,8],
     [0,0,9,0,0,4,2,0,5],
@@ -31,18 +32,32 @@ function getBoard(){
     displayBoard(8, rowNINEContainer);
 }
 
+function handleCellChange(event){
+    const changedValue = event.target.value;
+    const cellElement = event.target;
+    const rowElement = cellElement.parentElement; //gets parent element of cell which is the row it is in.
+    const rowIndex = Array.from(rowElement.parentElement.children).indexOf(rowElement); //Creates an array of a collection of all rows of the board, which then returns the index of the current cell.
+    const columnIndex = Array.from(rowElement.children).indexOf(cellElement); //Creates an array of all cells of the row, and returns the current column index.
+
+    if(validRow(rowIndex, changedValue) && validColumn(columnIndex, changedValue) && validSubgrid(rowIndex, columnIndex, changedValue)){
+        cellElement.style.backgroundColor = "green";
+    } else{
+        cellElement.style.backgroundColor = "red";
+    }
+}
+
+
 function displayBoard(i, rowContainer){
     board[i].forEach(cell => {
-        const cellElement = document.createElement('p');
-        cellElement.textContent = (cell);
-        cellElement.style.display = "inline-block";
-        cellElement.style.width = "40px";
-        cellElement.style.marginLeft = "27px";
-        cellElement.style.borderRight = "2px solid black";
+        const cellElement = document.createElement('input');
+        cellElement.type = 'text';
+        cellElement.value = (cell != 0 ? cell : '');
+        cellElement.maxLength = 1;
+        cellElement.classList.add('sudoku-cell');
+        cellElement.onchange = handleCellChange;
         rowContainer.appendChild(cellElement);
     });
 }
-
 
 function clearBoard(){
     const containers = document.querySelectorAll('.standardRows');
@@ -55,6 +70,11 @@ function clearBoard(){
         container.innerHTML = '';
     });
 }
+
+
+
+
+
 
 /* Logic for solving the sudoku board */
 
@@ -130,6 +150,6 @@ getBoard();
 document.getElementById("solveButton").addEventListener("click", () => {
     console.log("YES");
     clearBoard();
-    solve(0,0);
+    solve(0,0, board);
     getBoard();
 })
